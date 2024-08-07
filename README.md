@@ -19,4 +19,11 @@ S2 = 11
 S3 = 10
 
 In order to have a better picture on this a meramid graph script has been written which helps in visualzing the state diagram. 
-The design codes for the traffic light system is in the rtl folder. and the testbenches are in the testbench folder og this git repositry. 
+The complete design in a block diagram is shown in Figure 3.
+
+![image](https://github.com/user-attachments/assets/bae9b697-2b98-4da5-9615-6590535719c0)
+
+Figure 3. Block diagram of the traffic light system.
+
+
+The design codes for the traffic light system is in the rtl folder. and the testbenches are in the testbench folder of this git repositry. 
