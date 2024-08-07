@@ -12,8 +12,8 @@ module Traffic_Timing_Circuit(
     parameter p_SHORT_CYCLES = 4;
 
     // Counters for the timers
-    reg [4:0] long_count;
-    reg [2:0] short_count;
+    reg [4:0] long_count;  //Counter for long timer
+    reg [2:0] short_count; //Counter for short timer
 
     //Ouput clock generator
     always @(i_clk or posedge i_reset) begin
