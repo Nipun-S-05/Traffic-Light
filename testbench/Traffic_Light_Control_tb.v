@@ -1,4 +1,5 @@
-module Traffic_Light_Control_tb;
+`timescale 1ns / 1ps
+module Traffic_Light_Control_tb();
 
     // Testbench signals
     reg tb_clk;                  // Clock input
