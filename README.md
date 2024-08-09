@@ -51,6 +51,20 @@ Therefore the states can be coded in sequential logic and the transition can tak
 
 The FSM state diagram is shown in the code below
 
+```
+stateDiagram-v2
+    [*] --> State1: 
+    State1 --> State2: First state 25 seconds minimum or no vehicle on the side street
+    State2 --> State3: Second state  4 seconds
+    State3 --> State4: Third state  25 seconds maximum or no vehicle on the side street
+    State4 --> State1: Fourth state  4 seconds
+
+%%State1: Main_Trffic_light : GREEN ; Side_Traffic_Light : RED
+%%State2: Main_Trffic_light : Yellow ; Side_Traffic_Light : RED
+%%State3: Main_Trffic_light : RED ; Side_Traffic_Light : GREEN
+%%State4: Main_Trffic_light : RED ; Side_Traffic_Light : YELLOW
+```
+
 ```mermaid
 stateDiagram-v2
 [*] --> S00
