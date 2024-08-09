@@ -1,77 +1,52 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ps  // Define the time unit and time precision for simulation
+
 module Traffic_Light_Control_tb();
 
     // Testbench signals
-    reg tb_clk;                  // Clock input
-    reg tb_reset;                // Reset input
-    reg tb_Vs;                   // Vehicle sensor input
-    wire w_Main_red;            // Main road red light
-    wire w_Main_yellow;         // Main road yellow light
-    wire w_Main_green;          // Main road green light
-    wire w_Side_red;            // Side road red light
-    wire w_Side_yellow;         // Side road yellow light
-    wire w_Side_green;          // Side road green light
+    reg tb_clk;                  // Clock input for driving the circuit
+    reg tb_reset;                // Reset input for initializing the circuit
+    reg tb_Vs;                   // Vehicle sensor input indicating vehicle presence on the side road
+    wire w_Main_red;            // Main road red light output
+    wire w_Main_yellow;         // Main road yellow light output
+    wire w_Main_green;          // Main road green light output
+    wire w_Side_red;            // Side road red light output
+    wire w_Side_yellow;         // Side road yellow light output
+    wire w_Side_green;          // Side road green light output
 
-    // Clock period definition
+    // Clock period definition 
     parameter CLK_PERIOD = 10;
 
-    // Instantiate the top-level module
+    // Instantiate the top-level Traffic Light Control module
     Traffic_Light_Control dut (
-        .i_clk(tb_clk),
-        .i_reset(tb_reset),
-        .i_Vs(tb_Vs),
-        .o_Main_red(w_Main_red),
-        .o_Main_yellow(w_Main_yellow),
-        .o_Main_green(w_Main_green),
-        .o_Side_red(w_Side_red),
-        .o_Side_yellow(w_Side_yellow),
-        .o_Side_green(w_Side_green)
+        .i_clk(tb_clk),            // Connect the clock signal
+        .i_reset(tb_reset),        // Connect the reset signal
+        .i_Vs(tb_Vs),              // Connect the vehicle sensor signal
+        .o_Main_red(w_Main_red),   // Connect the main road red light output
+        .o_Main_yellow(w_Main_yellow), // Connect the main road yellow light output
+        .o_Main_green(w_Main_green),  // Connect the main road green light output
+        .o_Side_red(w_Side_red),   // Connect the side road red light output
+        .o_Side_yellow(w_Side_yellow), // Connect the side road yellow light output
+        .o_Side_green(w_Side_green)  // Connect the side road green light output
     );
 
-    // Clock generation
+    // Clock generation process
     initial begin
-        tb_clk = 0;
-        forever #(CLK_PERIOD / 2) tb_clk = ~tb_clk;
+        tb_clk = 0;  // Initialize clock signal
+        forever #(CLK_PERIOD / 2) tb_clk = ~tb_clk;  // Toggle clock every half period
     end
 
-    // Testbench sequence
+    // Testbench sequence to simulate different scenarios
     initial begin
         // Initialize inputs
-        tb_reset = 1;
-        tb_Vs = 0;
+        tb_reset = 1;  // Assert reset
+        tb_Vs = 0;     // No vehicle detected initially
 
-        // Apply reset
+        // Apply reset and hold for 2 clock periods
         #(2 * CLK_PERIOD);
-        tb_reset = 0;
+        tb_reset = 0;  // Deassert reset
 
         // Test case 1: No vehicle on side road, main road stays green
-        tb_Vs = 0;
-        #(50 * CLK_PERIOD);  
+        tb_Vs = 0;  // No vehicle detected
+        #(50 * CLK_PERIOD);  // Wait for 50 clock periods
 
-        // Test case 2: Vehicle detected on side road, main road transitions to yellow, then red
-        tb_Vs = 1;
-        #(10 * CLK_PERIOD);
-        tb_Vs = 0;
-        #(60 * CLK_PERIOD);  
-
-        // Test case 3: Vehicle detected on side road, side road turns green
-        tb_Vs = 1;
-        #(10 * CLK_PERIOD);
-        tb_Vs = 0;
-        #(30 * CLK_PERIOD);  
-
-        // Test case 4: No vehicle on side road, main road transitions back to green
-        tb_Vs = 0;
-        #(40 * CLK_PERIOD);  
-
-        // End simulation
-        $stop;
-    end
-
-    // Monitor the outputs
-    initial begin
-        $monitor("Time: %0t | Reset: %b | Vehicle Sensor: %b | Main Red: %b | Main Yellow: %b | Main Green: %b | Side Red: %b | Side Yellow: %b | Side Green: %b",
-                  $time, tb_reset, tb_Vs, w_Main_red, w_Main_yellow, w_Main_green, w_Side_red, w_Side_yellow, w_Side_green);
-    end
-
-endmodule
+        // Test case 2: Vehicle detected on sid
