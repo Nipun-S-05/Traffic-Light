@@ -53,12 +53,19 @@ The FSM state diagram is shown in the code below
 
 ```mermaid
 stateDiagram-v2
-[*] --> Still
-Still --> [*]
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]
+[*] --> S00
+S00: First state\n00\nMain green\nSide red
+S00 --> S00: Tl + ~Vs
+S00 --> S01: ~Tl*Vs
+S01: Second state\n01\nMain yellow\nSide red
+S01 --> S01: Ts
+S01 --> S11: ~Ts
+S11: Third state\n11\nMain red\nSide green
+S11 --> S10: Tl + ~Vs
+S11 --> S11: Tl*Vs
+S10: Fourth state\n10\nMain red\nSide yellow
+S10 --> S10: Ts
+S10 --> S00: ~Ts
 ```
 
 The RTL code for the traffic light system can be divided into three parts.
