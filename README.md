@@ -53,16 +53,20 @@ The FSM state diagram is shown in the code below
 
 ```
 stateDiagram-v2
-    [*] --> State1: 
-    State1 --> State2: First state 25 seconds minimum or no vehicle on the side street
-    State2 --> State3: Second state  4 seconds
-    State3 --> State4: Third state  25 seconds maximum or no vehicle on the side street
-    State4 --> State1: Fourth state  4 seconds
-
-%%State1: Main_Trffic_light : GREEN ; Side_Traffic_Light : RED
-%%State2: Main_Trffic_light : Yellow ; Side_Traffic_Light : RED
-%%State3: Main_Trffic_light : RED ; Side_Traffic_Light : GREEN
-%%State4: Main_Trffic_light : RED ; Side_Traffic_Light : YELLOW
+stateDiagram-v2
+[*] --> S00
+S00: First state\n00\nMain green\nSide red
+S00 --> S00: Tl + ~Vs
+S00 --> S01: ~Tl*Vs
+S01: Second state\n01\nMain yellow\nSide red
+S01 --> S01: Ts
+S01 --> S11: ~Ts
+S11: Third state\n11\nMain red\nSide green
+S11 --> S10: Tl + ~Vs
+S11 --> S11: Tl*Vs
+S10: Fourth state\n10\nMain red\nSide yellow
+S10 --> S10: Ts
+S10 --> S00: ~Ts
 ```
 
 ```mermaid
