@@ -28,12 +28,11 @@ stateDiagram-v2
 ```
 ```mermaid
 stateDiagram-v2
-[*] --> Still
-Still --> [*]
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]
+[*] --> State1
+State1 --> State2: First state 25 seconds minimum or no vehicle on the side street
+State2 --> State3: Second state  4 seconds
+State3 --> State4: Third state  25 seconds maximum or no vehicle on the side street
+State4 --> State1: Fourth state  4 seconds
 ```
 
 ## Traffic Light Implementation
