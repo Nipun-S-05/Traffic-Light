@@ -26,6 +26,14 @@ stateDiagram-v2
 %%State3: Main_Trffic_light : RED ; Side_Traffic_Light : GREEN
 %%State4: Main_Trffic_light : RED ; Side_Traffic_Light : YELLOW
 ```
+```mermaid
+[*] --> State1: 
+    State1 --> State2: First state 25 seconds minimum or no vehicle on the side street
+    State2 --> State3: Second state  4 seconds
+    State3 --> State4: Third state  25 seconds maximum or no vehicle on the side street
+    State4 --> State1: Fourth state  4 seconds
+```
+
 ## Traffic Light Implementation
 
 This traffic light can be coded into a Melay Finite State machine using the gray code states. The gray codes are used as is has an advantage of low power transistions in the when used in implementation.The states are named as follows. 
