@@ -98,4 +98,3 @@ Link : https://github.com/Nipun-S-05/Traffic-Light/tree/main/rtl
 The testbench for these design codes are in the testbench folder of the github repositry.
 
 Link: https://github.com/Nipun-S-05/Traffic-Light/tree/main/testbench
-
